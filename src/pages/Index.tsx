@@ -123,13 +123,25 @@ const Index = () => {
                 Get Started
               </h2>
               <div className="grid gap-3">
-                <Button variant="sport" className="justify-start">
+                <Button 
+                  variant="sport" 
+                  className="justify-start"
+                  onClick={() => window.open('https://playo.co/venues/horamavu-bengaluru/flowternity-sports-horamavu-bengaluru', '_blank')}
+                >
                   📅 Book on Playo
                 </Button>
-                <Button variant="secondary" className="justify-start">
+                <Button 
+                  variant="secondary" 
+                  className="justify-start"
+                  onClick={() => window.open('tel:+919886696155', '_self')}
+                >
                   📞 Call Directly
                 </Button>
-                <Button variant="accent" className="justify-start">
+                <Button 
+                  variant="accent" 
+                  className="justify-start"
+                  onClick={() => window.open('http://flowternity.com/', '_blank')}
+                >
                   🌐 Visit Website
                 </Button>
               </div>

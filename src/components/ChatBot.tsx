@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Send, Bot, User, MessageCircle } from 'lucide-react';
+import { Send, Bot, User, MessageCircle, Calendar, ExternalLink, Instagram, Globe } from 'lucide-react';
 import { geminiService } from '@/services/geminiService';
 import { useToast } from '@/hooks/use-toast';
 
@@ -18,7 +18,7 @@ export const ChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: "🏀 Welcome to FlowTernity Sports! I'm your AI assistant here to help you with information about our multi-sport facility in Horamavu, Bengaluru. Ask me about our courts, programs, amenities, or booking details!",
+      content: "🏀 Welcome to FlowTernity Sports! I'm your AI assistant here to help you with information about our multi-sport facility in Horamavu, Bengaluru. Ask me about our courts, programs, amenities, or booking details!\n\n💡 You can also use the quick booking button below to reserve your slot directly!",
       role: 'assistant',
       timestamp: new Date()
     }
@@ -85,7 +85,54 @@ export const ChatBot = () => {
     }
   };
 
+  const handleBooking = () => {
+    window.open('https://playo.co/venues/horamavu-bengaluru/flowternity-sports-horamavu-bengaluru', '_blank');
+  };
+
+  const handleSocialLink = (url: string) => {
+    window.open(url, '_blank');
+  };
+
   return (
+    <div className="space-y-4">
+      {/* Quick Actions */}
+      <Card className="p-4 bg-gradient-card backdrop-blur-sm shadow-elegant border-primary/20">
+        <h3 className="font-semibold mb-3 flex items-center gap-2">
+          <ExternalLink className="w-4 h-4 text-primary" />
+          Quick Actions
+        </h3>
+        <div className="grid gap-2">
+          <Button 
+            variant="sport" 
+            onClick={handleBooking}
+            className="justify-start text-sm"
+          >
+            <Calendar className="w-4 h-4" />
+            Book on Playo
+          </Button>
+          <div className="grid grid-cols-2 gap-2">
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => handleSocialLink('https://www.instagram.com/flowternity_sports/?hl=en')}
+            >
+              <Instagram className="w-4 h-4" />
+              Instagram
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => handleSocialLink('https://share.google/T3WTGtG79S2pc9jJi')}
+            >
+              <Globe className="w-4 h-4" />
+              Google
+            </Button>
+          </div>
+        </div>
+      </Card>
+
+      {/* Main Chatbot */}
+      {/* Chatbot Interface */}
     <Card className="h-[600px] flex flex-col bg-gradient-card backdrop-blur-sm shadow-elegant border-primary/20">
       {/* Header */}
       <div className="flex items-center gap-3 p-4 border-b bg-gradient-primary text-primary-foreground rounded-t-lg">
@@ -175,6 +222,7 @@ export const ChatBot = () => {
           </Button>
         </div>
       </div>
-    </Card>
+      </Card>
+    </div>
   );
 };
