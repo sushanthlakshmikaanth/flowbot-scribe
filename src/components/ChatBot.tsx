@@ -18,7 +18,7 @@ export const ChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: "🏀 Welcome to FlowTernity Sports! I'm your AI assistant here to help you with information about our multi-sport facility in Horamavu, Bengaluru. Ask me about our courts, programs, amenities, or booking details!\n\n💡 You can also use the quick booking button below to reserve your slot directly!",
+      content: "🏀 Welcome to FlowTernity Sports! I'm your AI assistant specializing in our multi-sport facility in Horamavu, Bengaluru. I can help you with:\n\n🏢 **Facility Info**: Courts, amenities, booking, programs\n🏃 **General Sports**: Fitness tips, training advice, sports guidance\n💬 **General Questions**: Happy to help with various topics!\n\n💡 Use the quick booking button below or just ask me anything!",
       role: 'assistant',
       timestamp: new Date()
     }
@@ -209,7 +209,7 @@ export const ChatBot = () => {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Ask about sports, facilities, booking..."
+            placeholder="Ask about FlowTernity Sports, general sports, fitness, or anything..."
             className="flex-1 transition-smooth focus:ring-primary"
             disabled={isLoading}
           />
