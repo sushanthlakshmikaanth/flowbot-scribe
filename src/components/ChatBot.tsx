@@ -96,26 +96,26 @@ export const ChatBot = () => {
   return (
     <div className="space-y-4">
       {/* Quick Actions */}
-      <Card className="p-4 bg-gradient-card backdrop-blur-sm shadow-elegant border-primary/20">
-        <h3 className="font-semibold mb-3 flex items-center gap-2">
-          <ExternalLink className="w-4 h-4 text-primary" />
+      <Card className="p-4 bg-gradient-card backdrop-blur-sm shadow-elegant border-primary/20 animate-fade-in">
+        <h3 className="font-semibold mb-3 flex items-center gap-2 text-transparent bg-gradient-primary bg-clip-text">
+          <ExternalLink className="w-4 h-4 text-primary animate-pulse" />
           Quick Actions
         </h3>
         <div className="grid gap-2">
           <Button 
             variant="sport" 
             onClick={handleBooking}
-            className="justify-start text-sm"
+            className="justify-start text-sm hover-scale group relative overflow-hidden"
           >
-            <Calendar className="w-4 h-4" />
+            <Calendar className="w-4 h-4 group-hover:animate-pulse" />
             Book on Playo
           </Button>
           <Button 
             variant="sport" 
             onClick={() => handleSocialLink('https://turf-book-omatic.vercel.app/')}
-            className="justify-start text-sm"
+            className="justify-start text-sm hover-scale group relative overflow-hidden bg-gradient-to-r from-primary to-primary-glow"
           >
-            <Calendar className="w-4 h-4" />
+            <Calendar className="w-4 h-4 group-hover:animate-pulse" />
             Schedule a Meet
           </Button>
           <div className="grid grid-cols-2 gap-2">
@@ -123,16 +123,18 @@ export const ChatBot = () => {
               variant="secondary" 
               size="sm"
               onClick={() => handleSocialLink('https://www.instagram.com/flowternity_sports/?hl=en')}
+              className="hover-scale group"
             >
-              <Instagram className="w-4 h-4" />
+              <Instagram className="w-4 h-4 group-hover:animate-pulse" />
               Instagram
             </Button>
             <Button 
               variant="secondary" 
               size="sm"
               onClick={() => handleSocialLink('https://share.google/T3WTGtG79S2pc9jJi')}
+              className="hover-scale group"
             >
-              <Globe className="w-4 h-4" />
+              <Globe className="w-4 h-4 group-hover:animate-pulse" />
               View Website
             </Button>
           </div>
@@ -140,96 +142,111 @@ export const ChatBot = () => {
       </Card>
 
       {/* Main Chatbot */}
-      {/* Chatbot Interface */}
-    <Card className="h-[600px] flex flex-col bg-gradient-card backdrop-blur-sm shadow-elegant border-primary/20">
-      {/* Header */}
-      <div className="flex items-center gap-3 p-4 border-b bg-gradient-primary text-primary-foreground rounded-t-lg">
-        <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-          <MessageCircle className="w-5 h-5" />
+      <Card className="h-[600px] flex flex-col bg-gradient-card backdrop-blur-sm shadow-elegant border-primary/20 relative overflow-hidden animate-scale-in">
+        {/* Animated background decoration */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 pointer-events-none" />
+        
+        {/* Header */}
+        <div className="relative flex items-center gap-3 p-4 border-b bg-gradient-primary text-primary-foreground rounded-t-lg">
+          <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center shadow-glow animate-pulse">
+            <MessageCircle className="w-5 h-5" />
+          </div>
+          <div>
+            <h3 className="font-semibold text-lg">FlowTernity Sports Assistant</h3>
+            <p className="text-sm text-primary-foreground/80">Ask me anything about our facility!</p>
+          </div>
+          <div className="ml-auto flex space-x-1">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+            <div className="w-2 h-2 bg-green-400/60 rounded-full animate-pulse" style={{ animationDelay: '0.3s' }} />
+            <div className="w-2 h-2 bg-green-400/30 rounded-full animate-pulse" style={{ animationDelay: '0.6s' }} />
+          </div>
         </div>
-        <div>
-          <h3 className="font-semibold">FlowTernity Sports Assistant</h3>
-          <p className="text-sm text-primary-foreground/80">Ask me anything about our facility!</p>
-        </div>
-      </div>
 
-      {/* Messages */}
-      <ScrollArea ref={scrollAreaRef} className="flex-1 p-4">
-        <div className="space-y-4">
-          {messages.map((message) => (
-            <div
-              key={message.id}
-              className={`flex items-start gap-3 ${
-                message.role === 'user' ? 'flex-row-reverse' : ''
-              }`}
-            >
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                message.role === 'user' 
-                  ? 'bg-gradient-primary text-primary-foreground' 
-                  : 'bg-gradient-secondary text-secondary-foreground'
-              }`}>
-                {message.role === 'user' ? (
-                  <User className="w-4 h-4" />
-                ) : (
+        {/* Messages */}
+        <ScrollArea ref={scrollAreaRef} className="flex-1 p-4 relative">
+          <div className="space-y-4">
+            {messages.map((message, index) => (
+              <div
+                key={message.id}
+                className={`flex items-start gap-3 animate-fade-in ${
+                  message.role === 'user' ? 'flex-row-reverse' : ''
+                }`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 shadow-md hover-scale ${
+                  message.role === 'user' 
+                    ? 'bg-gradient-primary text-primary-foreground shadow-glow' 
+                    : 'bg-gradient-secondary text-secondary-foreground'
+                }`}>
+                  {message.role === 'user' ? (
+                    <User className="w-4 h-4" />
+                  ) : (
+                    <Bot className="w-4 h-4" />
+                  )}
+                </div>
+                <div className={`max-w-[80%] ${message.role === 'user' ? 'text-right' : ''}`}>
+                  <div
+                    className={`rounded-2xl px-4 py-3 transition-smooth hover-scale ${
+                      message.role === 'user'
+                        ? 'bg-gradient-primary text-primary-foreground ml-auto shadow-glow'
+                        : 'bg-card border shadow-elegant backdrop-blur-sm'
+                    }`}
+                  >
+                    <p className="text-sm whitespace-pre-wrap leading-relaxed">{message.content}</p>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-1 opacity-60">
+                    {message.timestamp.toLocaleTimeString([], { 
+                      hour: '2-digit', 
+                      minute: '2-digit' 
+                    })}
+                  </p>
+                </div>
+              </div>
+            ))}
+            {isLoading && (
+              <div className="flex items-start gap-3 animate-fade-in">
+                <div className="w-8 h-8 rounded-full bg-gradient-secondary text-secondary-foreground flex items-center justify-center shadow-md">
                   <Bot className="w-4 h-4" />
-                )}
-              </div>
-              <div className={`max-w-[80%] ${message.role === 'user' ? 'text-right' : ''}`}>
-                <div
-                  className={`rounded-2xl px-4 py-2 ${
-                    message.role === 'user'
-                      ? 'bg-gradient-primary text-primary-foreground ml-auto'
-                      : 'bg-card border shadow-sm'
-                  }`}
-                >
-                  <p className="text-sm whitespace-pre-wrap">{message.content}</p>
                 </div>
-                <p className="text-xs text-muted-foreground mt-1">
-                  {message.timestamp.toLocaleTimeString([], { 
-                    hour: '2-digit', 
-                    minute: '2-digit' 
-                  })}
-                </p>
-              </div>
-            </div>
-          ))}
-          {isLoading && (
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-gradient-secondary text-secondary-foreground flex items-center justify-center">
-                <Bot className="w-4 h-4" />
-              </div>
-              <div className="bg-card border rounded-2xl px-4 py-2">
-                <div className="flex items-center gap-1">
-                  <div className="w-2 h-2 bg-primary rounded-full animate-bounce" />
-                  <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
-                  <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+                <div className="bg-card border rounded-2xl px-4 py-3 shadow-elegant backdrop-blur-sm">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce" />
+                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
+                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
-        </div>
-      </ScrollArea>
+            )}
+          </div>
+        </ScrollArea>
 
-      {/* Input */}
-      <div className="p-4 border-t bg-card/50">
-        <div className="flex gap-2">
-          <Input
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyPress={handleKeyPress}
-            placeholder="Ask about FlowTernity Sports, general sports, fitness, or anything..."
-            className="flex-1 transition-smooth focus:ring-primary"
-            disabled={isLoading}
-          />
-          <Button
-            onClick={handleSendMessage}
-            disabled={!inputValue.trim() || isLoading}
-            className="bg-gradient-primary hover:shadow-glow transition-smooth"
-          >
-            <Send className="w-4 h-4" />
-          </Button>
+        {/* Input */}
+        <div className="relative p-4 border-t bg-gradient-subtle backdrop-blur-sm">
+          <div className="flex gap-2">
+            <Input
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyPress={handleKeyPress}
+              placeholder="Ask about FlowTernity Sports, general sports, fitness, or anything..."
+              className="flex-1 transition-smooth focus:ring-primary focus:shadow-glow border-primary/20 bg-card/80 backdrop-blur-sm"
+              disabled={isLoading}
+            />
+            <Button
+              onClick={handleSendMessage}
+              disabled={!inputValue.trim() || isLoading}
+              className="bg-gradient-primary hover:shadow-glow transition-smooth hover-scale relative overflow-hidden"
+            >
+              <Send className="w-4 h-4" />
+            </Button>
+          </div>
         </div>
-      </div>
+        
+        {/* Footer */}
+        <div className="px-4 py-2 border-t bg-gradient-subtle backdrop-blur-sm">
+          <p className="text-xs text-center text-muted-foreground/60">
+            Developed by <span className="text-primary font-medium">Projxpt X LoopZen</span>
+          </p>
+        </div>
       </Card>
     </div>
   );
