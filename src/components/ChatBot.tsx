@@ -120,7 +120,7 @@ export const ChatBot = () => {
           </Button>
           <div className="grid grid-cols-2 gap-2">
             <Button 
-              variant="outline" 
+              variant="secondary" 
               size="sm"
               onClick={() => handleSocialLink('https://www.instagram.com/flowternity_sports/?hl=en')}
             >
@@ -128,12 +128,12 @@ export const ChatBot = () => {
               Instagram
             </Button>
             <Button 
-              variant="outline" 
+              variant="secondary" 
               size="sm"
               onClick={() => handleSocialLink('https://share.google/T3WTGtG79S2pc9jJi')}
             >
               <Globe className="w-4 h-4" />
-              Google
+              View Website
             </Button>
           </div>
         </div>
