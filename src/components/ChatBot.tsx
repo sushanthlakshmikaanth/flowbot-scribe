@@ -111,7 +111,7 @@ export const ChatBot = () => {
             Book on Playo
           </Button>
           <Button 
-            variant="accent" 
+            variant="sport" 
             onClick={() => handleSocialLink('https://turf-book-omatic.vercel.app/')}
             className="justify-start text-sm"
           >
