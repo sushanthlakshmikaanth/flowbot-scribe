@@ -110,6 +110,14 @@ export const ChatBot = () => {
             <Calendar className="w-4 h-4" />
             Book on Playo
           </Button>
+          <Button 
+            variant="accent" 
+            onClick={() => handleSocialLink('https://turf-book-omatic.vercel.app/')}
+            className="justify-start text-sm"
+          >
+            <Calendar className="w-4 h-4" />
+            Schedule a Meet
+          </Button>
           <div className="grid grid-cols-2 gap-2">
             <Button 
               variant="outline" 
