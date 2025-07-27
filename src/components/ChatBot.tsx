@@ -18,7 +18,7 @@ export const ChatBot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: "🏀 Welcome to FlowTernity Sports! I'm your AI assistant specializing in our multi-sport facility in Horamavu, Bengaluru. I can help you with:\n\n🏢 **Facility Info**: Courts, amenities, booking, programs\n🏃 **General Sports**: Fitness tips, training advice, sports guidance\n💬 **General Questions**: Happy to help with various topics!\n\n💡 Use the quick booking button below or just ask me anything!",
+      content: "🏀 Welcome to Flowternity Multisports Facility! I'm your AI assistant specializing in our multi-sport facility in Horamavu, Bengaluru. I can help you with:\n\n🏢 **Facility Info**: Courts, amenities, booking, programs\n🏃 **General Sports**: Fitness tips, training advice, sports guidance\n💬 **General Questions**: Happy to help with various topics!\n\n💡 Use the quick booking button below or just ask me anything!",
       role: 'assistant',
       timestamp: new Date()
     }
@@ -152,7 +152,7 @@ export const ChatBot = () => {
             <MessageCircle className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="font-semibold text-lg">FlowTernity Sports Assistant</h3>
+            <h3 className="font-semibold text-lg">Flowternity Multisports Assistant</h3>
             <p className="text-sm text-primary-foreground/80">Ask me anything about our facility!</p>
           </div>
           <div className="ml-auto flex space-x-1">
@@ -227,7 +227,7 @@ export const ChatBot = () => {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Ask about FlowTernity Sports, general sports, fitness, or anything..."
+              placeholder="Ask about Flowternity Multisports, general sports, fitness, or anything..."
               className="flex-1 transition-smooth focus:ring-primary focus:shadow-glow border-primary/20 bg-card/80 backdrop-blur-sm"
               disabled={isLoading}
             />
