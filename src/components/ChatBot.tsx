@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Send, Bot, User, MessageCircle, Calendar, ExternalLink, Instagram, Globe } from 'lucide-react';
-import { geminiService } from '@/services/geminiService';
+import { n8nService } from '@/services/n8nService';
 import { useToast } from '@/hooks/use-toast';
 
 interface Message {
@@ -56,7 +56,7 @@ export const ChatBot = () => {
     setIsLoading(true);
 
     try {
-      const response = await geminiService.generateResponse(inputValue.trim());
+      const response = await n8nService.generateResponse(inputValue.trim());
       
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
