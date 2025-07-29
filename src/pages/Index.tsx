@@ -53,7 +53,7 @@ const Index = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Phone className="w-4 h-4 text-primary" />
-                  <span>+91 7795310645</span>
+                  <span>+91 9886696155</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Globe className="w-4 h-4 text-primary" />
@@ -136,7 +136,7 @@ const Index = () => {
                 <Button 
                   variant="secondary" 
                   className="justify-start"
-                  onClick={() => window.open('tel:+917795310645', '_self')}
+                  onClick={() => window.open('tel:+919886696155', '_self')}
                 >
                   📞 Call Directly
                 </Button>

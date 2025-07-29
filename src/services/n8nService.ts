@@ -38,7 +38,7 @@ class N8nService {
       
     } catch (error) {
       console.error('Error communicating with n8n:', error);
-      return "🔧 Connection Error: Unable to reach n8n workflow. Please verify:\n\n1. n8n workflow is active\n2. Webhook URL is correct\n3. Chat trigger node is properly configured\n4. AI agent node is working\n\nContact FlowTernity Sports at +91 98866 96155 for immediate assistance!";
+      return "🔧 Connection Error: Unable to reach n8n workflow. Please verify:\n\n1. n8n workflow is active\n2. Webhook URL is correct\n3. Chat trigger node is properly configured\n4. AI agent node is working\n\nContact FlowTernity Sports at +91 9886696155 for immediate assistance!";
     }
   }
 }
