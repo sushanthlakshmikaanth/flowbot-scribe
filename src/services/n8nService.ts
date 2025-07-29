@@ -3,6 +3,8 @@ class N8nService {
 
   async generateResponse(userMessage: string): Promise<string> {
     try {
+      console.log('Sending to n8n:', { message: userMessage });
+      
       const response = await fetch(this.webhookUrl, {
         method: 'POST',
         headers: {
@@ -15,18 +17,28 @@ class N8nService {
         }),
       });
 
+      const data = await response.json();
+      console.log('n8n response:', { status: response.status, data });
+
       if (!response.ok) {
+        // Handle n8n workflow errors specifically
+        if (data.message) {
+          return `❌ n8n Workflow Error: ${data.message}\n\nPlease check your n8n workflow configuration. The chat trigger and AI agent nodes may need adjustment.`;
+        }
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json();
+      // Return the response from n8n - adjust based on your workflow output structure
+      if (data.response) return data.response;
+      if (data.message && data.message !== "Error in workflow") return data.message;
+      if (data.text) return data.text;
+      if (data.output) return data.output;
       
-      // Return the response from n8n - adjust this based on your n8n response structure
-      return data.response || data.message || data.text || "I received your message but couldn't generate a proper response.";
+      return "✅ n8n connection successful, but no response content received. Please check your AI agent node output format.";
       
     } catch (error) {
       console.error('Error communicating with n8n:', error);
-      return "I'm sorry, I'm having trouble connecting to my AI system right now. Please try again or contact FlowTernity Sports directly at +91 98866 96155 for immediate assistance!";
+      return "🔧 Connection Error: Unable to reach n8n workflow. Please verify:\n\n1. n8n workflow is active\n2. Webhook URL is correct\n3. Chat trigger node is properly configured\n4. AI agent node is working\n\nContact FlowTernity Sports at +91 98866 96155 for immediate assistance!";
     }
   }
 }
