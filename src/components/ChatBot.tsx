@@ -116,7 +116,7 @@ export const ChatBot = () => {
             className="justify-start text-sm hover-scale group relative overflow-hidden bg-gradient-to-r from-primary to-primary-glow"
           >
             <Calendar className="w-4 h-4 group-hover:animate-pulse" />
-            Schedule a Meet
+            Book a demo class
           </Button>
           <div className="grid grid-cols-2 gap-2">
             <Button 
@@ -192,7 +192,19 @@ export const ChatBot = () => {
                         : 'bg-card border shadow-elegant backdrop-blur-sm'
                     }`}
                   >
-                    <p className="text-sm whitespace-pre-wrap leading-relaxed">{message.content}</p>
+                    <div 
+                      className="text-sm whitespace-pre-wrap leading-relaxed"
+                      dangerouslySetInnerHTML={{
+                        __html: message.content
+                          // Convert markdown links [text](url) to HTML
+                          .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-500 underline hover:text-blue-600 transition-colors">$1</a>')
+                          // Convert HTML links to include target="_blank" and styling if not already present
+                          .replace(/<a href="([^"]+)"(?![^>]*target=)([^>]*)>/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-blue-500 underline hover:text-blue-600 transition-colors"$2>')
+                          // Sanitize basic safety - remove script tags and javascript: protocols
+                          .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                          .replace(/javascript:/gi, '')
+                      }}
+                    />
                   </div>
                   <p className="text-xs text-muted-foreground mt-1 opacity-60">
                     {message.timestamp.toLocaleTimeString([], { 
